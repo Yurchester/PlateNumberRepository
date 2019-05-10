@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlateNumberRecognition.Visi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlateNumberRecognition.Processing", "PlateNumberRecognition.Processing\PlateNumberRecognition.Processing.csproj", "{04C3B69F-059D-424D-8B81-801F4C171E98}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlateNumberRecognition.DAL", "PlateNumberRecognition.DAL\PlateNumberRecognition.DAL.csproj", "{217C5EAA-DC24-40A2-8F34-D47BB7D7EA8C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlateNumberRecognition.BLL", "PlateNumberRecognition.BLL\PlateNumberRecognition.BLL.csproj", "{CE936926-0FE8-4587-BF4B-7ABE9BE8B3AE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{04C3B69F-059D-424D-8B81-801F4C171E98}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04C3B69F-059D-424D-8B81-801F4C171E98}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04C3B69F-059D-424D-8B81-801F4C171E98}.Release|Any CPU.Build.0 = Release|Any CPU
+		{217C5EAA-DC24-40A2-8F34-D47BB7D7EA8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{217C5EAA-DC24-40A2-8F34-D47BB7D7EA8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{217C5EAA-DC24-40A2-8F34-D47BB7D7EA8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{217C5EAA-DC24-40A2-8F34-D47BB7D7EA8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE936926-0FE8-4587-BF4B-7ABE9BE8B3AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE936926-0FE8-4587-BF4B-7ABE9BE8B3AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE936926-0FE8-4587-BF4B-7ABE9BE8B3AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE936926-0FE8-4587-BF4B-7ABE9BE8B3AE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

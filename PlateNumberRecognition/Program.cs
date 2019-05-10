@@ -6,7 +6,8 @@ namespace PlateNumberRecognition
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            new Engine.Engine().Run();
+            Console.ReadKey();
         }
     }
 }
