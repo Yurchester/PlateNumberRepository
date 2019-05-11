@@ -9,6 +9,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PlateNumberRecognition.DAL\PlateNumberRecognition.DAL.csproj" />
+    <ProjectReference Include="..\PlateNumberRecognition.OCR\PlateNumberRecognition.OCR.csproj" />
+    <ProjectReference Include="..\PlateNumberRecognition.Vision\PlateNumberRecognition.Vision.csproj" />
   </ItemGroup>
 
 </Project>

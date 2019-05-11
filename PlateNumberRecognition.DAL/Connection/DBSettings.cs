@@ -4,7 +4,7 @@
     {
         public Setting<string> ConnectionString = new Setting<string>
         {
-            Value = "Server=127.0.0.1;SslMode=none;database=ImageRecognition;uid=reads;Port=3306;Password=!Smb571;default command timeout=240;",
+            Value = "Server=127.0.0.1;SslMode=none;database=PlateNumber;uid=reads;Port=3306;Password=!Smb571;default command timeout=240;",
             Description = "Локальная строка подключения к БД"
         };
     }

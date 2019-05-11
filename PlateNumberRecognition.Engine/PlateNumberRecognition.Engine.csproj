@@ -7,4 +7,14 @@
     <StartupObject />
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MySql.Data" Version="8.0.16" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PlateNumberRecognition.BLL\PlateNumberRecognition.BLL.csproj" />
+    <ProjectReference Include="..\PlateNumberRecognition.DAL\PlateNumberRecognition.DAL.csproj" />
+    <ProjectReference Include="..\PlateNumberRecognition.Vision\PlateNumberRecognition.Vision.csproj" />
+  </ItemGroup>
+
 </Project>

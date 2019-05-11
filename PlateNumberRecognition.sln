@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlateNumberRecognition.DAL"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlateNumberRecognition.BLL", "PlateNumberRecognition.BLL\PlateNumberRecognition.BLL.csproj", "{CE936926-0FE8-4587-BF4B-7ABE9BE8B3AE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlateNumberRecognition.OCR", "PlateNumberRecognition.OCR\PlateNumberRecognition.OCR.csproj", "{79597979-DB86-4953-8CB2-96185BC05A7D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{CE936926-0FE8-4587-BF4B-7ABE9BE8B3AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CE936926-0FE8-4587-BF4B-7ABE9BE8B3AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CE936926-0FE8-4587-BF4B-7ABE9BE8B3AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79597979-DB86-4953-8CB2-96185BC05A7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79597979-DB86-4953-8CB2-96185BC05A7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79597979-DB86-4953-8CB2-96185BC05A7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79597979-DB86-4953-8CB2-96185BC05A7D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
