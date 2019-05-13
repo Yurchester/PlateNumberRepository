@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace PlateNumberRecognition.Generator.GeneratorFolder
+﻿namespace PlateNumberRecognition.Generator.GeneratorFolder
 {
     public static class Styles
     {

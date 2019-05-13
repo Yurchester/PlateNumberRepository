@@ -2,10 +2,8 @@
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Diagnostics;
-using System.Text;
 using MySql.Data.MySqlClient;
 using PlateNumberRecognition.DAL.Models;
-using PlateNumberRecognition.OCR.DAL.Models;
 using PlateNumberRecognition.Vision.Logic.Converters;
 
 namespace PlateNumberRecognition.BLL.Services

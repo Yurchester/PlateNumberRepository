@@ -11,7 +11,6 @@ namespace PlateNumberRecognition.Vision.Logic.Extensions
         /// </summary>
         /// <param name="monomap">Ссылка на <see cref="IMonomap"/>.</param>
         /// <returns>Ссылка на скопированный <see cref="IMonomap"/>.</returns>
-        // TODO Пока не хочется <see cref="ICloneable"/> обязывать реализовывать.
         public static IMonomap Clone(this IMonomap monomap)
         {
             bool[,] newMonomap = new bool[monomap.Width, monomap.Height];

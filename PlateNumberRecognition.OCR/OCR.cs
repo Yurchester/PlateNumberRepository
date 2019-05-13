@@ -32,7 +32,7 @@ namespace PlateNumberRecognition.OCR
             var lettersValue = lettersArray.ToList().Max();
             var resString = String.Empty;
             if (
-                (digitsValue >= 0.999 && lettersValue >= 0.999) ||
+                (digitsValue >= 0.99 && lettersValue >= 0.99) ||
                 (Math.Round(Convert.ToDecimal(digitsValue), 2) == Math.Round(Convert.ToDecimal(lettersValue), 2))
                )
             {

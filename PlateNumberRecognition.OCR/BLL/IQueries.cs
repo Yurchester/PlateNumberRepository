@@ -1,5 +1,4 @@
 ﻿using PlateNumberRecognition.DAL.Models;
-using PlateNumberRecognition.OCR.DAL.Models;
 using System.Collections.Generic;
 
 namespace PlateNumberRecognition.OCR.BLL

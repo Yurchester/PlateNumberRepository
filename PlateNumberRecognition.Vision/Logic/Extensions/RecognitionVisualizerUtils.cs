@@ -2,6 +2,7 @@
 using PlateNumberRecognition.Vision.Logic.Models;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
@@ -26,12 +27,7 @@ namespace PlateNumberRecognition.Vision.Logic.Extensions
             { QState.Unknown, UnknownPen }
         };
 
-        /// <summary>
-        /// Визуализировать результат распознания на <see cref="Bitmap"/>.
-        /// </summary>
-        /// <param name="bitmap">Ссылка на <see cref="Bitmap"/>.</param>
-        /// <param name="report">Ссылка на результат распознавания.</param>
-        public static Dictionary<SymbolDataModel, double> Visualize(Bitmap bitmap, QReport report)
+        public static Dictionary<SymbolDataModel, Tuple<double, double>> Visualize(Bitmap bitmap, QReport report)
         {
             List<SymbolDataModel> listOfSymbolData = new List<SymbolDataModel>();
             var thickness = Thickness;
@@ -44,7 +40,6 @@ namespace PlateNumberRecognition.Vision.Logic.Extensions
                         RectangleF cloneRect = new RectangleF(0, 0, bitmap.Width, bitmap.Height);
                         Bitmap cloneBitmap = bitmap.Clone(cloneRect, PixelFormat.Format24bppRgb);
                         g.DrawRectangle(DefaultMapping[symbol.State], symbol.StartPoint.X - thickness, symbol.StartPoint.Y - thickness, symbol.Width + thickness, symbol.Height + thickness);
-                        bitmap.Save($"D:\\111.bmp");
                         if (symbol.State == QState.Assumptions || symbol.State == QState.Ok)
                         {
                             listOfSymbolData.Add(new SymbolDataModel()
@@ -58,44 +53,50 @@ namespace PlateNumberRecognition.Vision.Logic.Extensions
                 }
                 catch (Exception ex)
                 {
+                    Debug.WriteLine(ex);
                     continue;
                 }
             }
 
             double maxHeightPercent = 100.0 / listOfSymbolData.Max(t => t.Size.Item1);
             double maxWidthPercent = 100.0 / listOfSymbolData.Max(t => t.Size.Item2);
-            Dictionary<SymbolDataModel, double> dict = new Dictionary<SymbolDataModel, double>();
+            double maxGeoYPercent = 100.0 / listOfSymbolData.Max(t => t.Position.Item2);
+            Dictionary<SymbolDataModel, Tuple<double, double>> dict = new Dictionary<SymbolDataModel, Tuple<double, double>>();
+
             foreach (var item in listOfSymbolData)
             {
                 var heightPercent = item.Size.Item1 * maxHeightPercent;
-                dict.Add(item, heightPercent);
+                var GeoYPercent = item.Position.Item2 * maxGeoYPercent;
+                dict.Add(item, new Tuple<double, double>(heightPercent, GeoYPercent));
             }
-            Dictionary<SymbolDataModel, double> dicttemp = new Dictionary<SymbolDataModel, double>();
-            dicttemp = dict;
-            Dictionary<SymbolDataModel, double> dict2 = new Dictionary<SymbolDataModel, double>();
+
+            Dictionary<SymbolDataModel, Tuple<double, double>> tempDictionary = new Dictionary<SymbolDataModel, Tuple<double, double>>();
+            tempDictionary = dict;
+            Dictionary<SymbolDataModel, Tuple<double, double>> dataDictionary = new Dictionary<SymbolDataModel, Tuple<double, double>>();
             foreach (var item in dict)
             {
-                foreach (var item2 in dicttemp)
+                foreach (var item2 in tempDictionary)
                 {
-                    if (item.Value > 4 && item2.Value > 4) //4 && 4
+                    if (item.Value.Item1 > 4 && item2.Value.Item1 > 4)
                     {
-                        if (!dict2.ContainsKey(item2.Key))
+                        if (!dataDictionary.ContainsKey(item2.Key))
                         {
-                            var temp = (item.Value - item2.Value);
-                            if (temp <= 7 && temp >= -7)
+                            var temp = (item.Value.Item1 - item2.Value.Item1);
+                            var geoY = (item.Value.Item2 - item2.Value.Item2);
+
+                            if ((temp <= 7 && temp >= -7) || geoY <= 7 && geoY >= -7)
                             {
-                                dict2.Add(item2.Key, item.Value);
+                                if (geoY <= 7 && geoY >= -7)
+                                {
+                                    dataDictionary.Add(item2.Key, item.Value);
+                                }
                             }
                         }
                     }
-                    //if ((uint)(item.Value - item2.Value) < 10 && !dict2.ContainsKey(item.Key) && item.Value > 5 && item2.Value > 5)
-                    //{
-
-                    //}
                 }
             }
 
-            return dict2;
+            return dataDictionary;
         }
 
         static int i = 0;
@@ -106,23 +107,13 @@ namespace PlateNumberRecognition.Vision.Logic.Extensions
                 throw new ArgumentException("No valid bitmap");
 
             Bitmap cropBmp = bmp.Clone(selection, bmp.PixelFormat);
-            //  var temp = Recognition.ToRec(cropBmp);
-            //cropBmp.Save($"D:\\symbols\\cropBmp_{i++}.bmp");
-
             if (CheckPixel(cropBmp))
-            {
-                var result = ResizeImage(cropBmp, 25, 25);
-                //result.Save($"D:\\symbols\\res_{i++}.bmp");
-
-                return result;
-            }
+                return ResizeImage(cropBmp, 25, 25);
             else
                 return null;
         }
         public static void VisualizeV2(Bitmap bitmap, QReport report, string folder)
         {
-
-            var thickness = Thickness;
             foreach (var symbol in report.Symbols)
             {
                 try
@@ -136,6 +127,7 @@ namespace PlateNumberRecognition.Vision.Logic.Extensions
                 }
                 catch (Exception ex)
                 {
+                    Debug.WriteLine(ex);
                     continue;
                 }
             }

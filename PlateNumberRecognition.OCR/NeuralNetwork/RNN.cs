@@ -79,13 +79,11 @@ namespace PlateNumberRecognition.OCR.NeuralNetwork
                     }
                 }
             }
-            // RunForDigits(outputDigitsValues);
 
             return outputDigitsValues;
         }
         public static string RunForDigits(double[] outputDigitsValues, double digitsValue)
         {
-            //Console.WriteLine("result = " + DataManager.FormatOutputResult(outputDigitsValues) + "\nchance = " + Math.Round(Convert.ToDecimal(digitsValue * 100), 2) + " %");
             return DataManager.FormatOutputResult(outputDigitsValues).ToString();
         }
 
@@ -151,7 +149,6 @@ namespace PlateNumberRecognition.OCR.NeuralNetwork
             double[][] testLettersOutputs;
             testLettersInputs = DataManager.LoadTest(DataSet.ImageToBinary(image), out testLettersOutputs);
             double[] outputLettersValues = _networkForLetters.Compute(testLettersInputs.FirstOrDefault());
-            //RunForLetters(outputLettersValues);
 
             return outputLettersValues;
         }
@@ -163,7 +160,6 @@ namespace PlateNumberRecognition.OCR.NeuralNetwork
             {
                 if (item.Key == result)
                 {
-                    // Console.WriteLine("result = " + item.Value +"\nchance = " + Math.Round(Convert.ToDecimal(lettersValue * 100), 2) + " %");
                     resString = item.Value;
                 }
             }

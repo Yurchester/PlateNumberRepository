@@ -1,7 +1,5 @@
 ﻿using MySql.Data.MySqlClient;
-using PlateNumberRecognition.BLL.Services;
 using PlateNumberRecognition.DAL.Connection;
-using PlateNumberRecognition.OCR.BLL;
 using PlateNumberRecognition.Processing;
 using PlateNumberRecognition.Vision;
 using PlateNumberRecognition.Vision.Logic.Engine;
@@ -12,7 +10,6 @@ using System.Collections.ObjectModel;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 
@@ -87,7 +84,6 @@ namespace PlateNumberRecognition.Engine
                                 var img = symbolItem.Key;
                                 if (img.Image != null)
                                 {
-                                    //img.Image.Save($"D:\\symbols\\{img.Image}_{i++}.bmp");
                                     res += OCR.OCR.Process(img.Image);
                                     _flag = true;
                                 }
@@ -96,41 +92,8 @@ namespace PlateNumberRecognition.Engine
                                     templist.Add(new Tuple<int, string>(symbolItem.Key.Position.Item1, res));
                                 }
                             }
-                            //Console.WriteLine("result = " + res);
                         }
                         string StringRes = String.Empty;
-                        //string StringCode = String.Empty;
-                        //int k = 0; //для взятия первых двух значений, иначе бывают случаи 12.6.0.0
-                        //if (templist.Count >= 1)
-                        //{
-                        //    foreach (var output in templist.OrderBy(t => t.Item1))
-                        //    {
-                        //        var codeCheck = GetRegex(output.Item2);
-                        //        if (codeCheck.Length > 15)
-                        //        {
-                        //            foreach (var code in codeCheck)
-                        //            {
-                        //                if (code == 'з' || code == 'э')
-                        //                    StringCode += 3.ToString();
-                        //                else if (code == 'о')
-                        //                    StringCode += 0.ToString();
-                        //                else if (code == 'в')
-                        //                    StringCode += 8.ToString();
-                        //                else if (code == 'т')
-                        //                    StringCode += 7.ToString();
-                        //                else if (code == 'i')
-                        //                    StringCode += 1.ToString();
-                        //                else
-                        //                    StringCode += code;
-                        //            }
-                        //        }
-                        //    }
-                        //    Console.WriteLine("code = " + StringCode);
-                        //    //if (new Queries(_conn).UpdateCodeToDB(item.id, StringCode) == 1)
-                        //    //{
-                        //    //    ///
-                        //    //}
-                        //}
 
                         if (templist.Count >= 1)
                         {

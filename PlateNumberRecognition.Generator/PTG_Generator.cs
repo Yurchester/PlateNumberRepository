@@ -94,24 +94,18 @@ namespace PlateNumberRecognition.Generator
 
                 foreach (Bitmap bitmap in bitmaps)
                 {
-                    //update the size of the final bitmap
                     width += bitmap.Width;
                     height = bitmap.Height > height ? bitmap.Height : height;
 
                     images.Add(bitmap);
                 }
-                //create a bitmap to hold the combined image
                 finalImage = new Bitmap(width, height);
-                //get a graphics object from the image so we can draw on it
-                using (System.Drawing.Graphics g = System.Drawing.Graphics.FromImage(finalImage))
+                using (Graphics g = Graphics.FromImage(finalImage))
                 {
-                    //set background color
-                    //g.Clear(System.Drawing.Color.Black);
-                    //go through each image and draw it on the final image
                     int offset = 0;
                     foreach (Bitmap image in images)
                     {
-                        g.DrawImage(image, new System.Drawing.Rectangle(offset, 0, image.Width, image.Height));
+                        g.DrawImage(image, new Rectangle(offset, 0, image.Width, image.Height));
                         offset += image.Width;
                     }
                 }
@@ -288,8 +282,6 @@ namespace PlateNumberRecognition.Generator
                             var debugFileName = $"{fontName} {fontSize} {fontStyle}.png";
                             Bitmap clone = new Bitmap(bmp, new Size(100, 100));
                             clone.Save(Path.Combine(chrDir, debugFileName), ImageFormat.Png);
-
-                           // PreviewImage.Source = BitmapUtils.SourceFromBitmap(bmp);
 
                             _genImageNumber++;
                             bmp.Dispose();

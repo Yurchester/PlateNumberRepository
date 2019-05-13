@@ -1,11 +1,9 @@
 ﻿using MySql.Data.MySqlClient;
 using PlateNumberRecognition.DAL.Models;
-using PlateNumberRecognition.OCR.DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
 using System.Diagnostics;
-using System.Text;
 
 namespace PlateNumberRecognition.OCR.BLL
 {
@@ -24,13 +22,11 @@ namespace PlateNumberRecognition.OCR.BLL
         {
             try
             {
-                //_conn.Open();
                 string query =
                     $"INSERT INTO `digits` (`InputVector`,`OutputVector`) " +
                     $"VALUES ('{model.InputVector}', '{model.OutputVector}');";
                 _cmd = new MySqlCommand() { Connection = _conn, CommandText = query };
                 _cmd.ExecuteNonQuery();
-                //_conn.Close();
             }
             catch (Exception ex)
             {
@@ -104,8 +100,6 @@ namespace PlateNumberRecognition.OCR.BLL
                         }
                     }
                 };
-
-                //   _conn.Close();
             }
             catch (Exception ex)
             {

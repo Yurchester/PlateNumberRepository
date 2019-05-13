@@ -3,6 +3,7 @@ using PlateNumberRecognition.Vision.Logic.Classes;
 using PlateNumberRecognition.Vision.Logic.Engine;
 using PlateNumberRecognition.Vision.Logic.Extensions;
 using PlateNumberRecognition.Vision.Logic.Models;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -11,7 +12,7 @@ namespace PlateNumberRecognition.Vision
 {
     public class NeuralNetwork
     {
-        public static Dictionary<SymbolDataModel, double> Run(Bitmap image, Dictionary<string, EulerContainer> _eulerContainersCache)
+        public static Dictionary<SymbolDataModel, Tuple<double, double>> Run(Bitmap image, Dictionary<string, EulerContainer> _eulerContainersCache)
         {
             Approximator approximator = new Approximator();
             approximator.Approximate(image);
@@ -52,8 +53,8 @@ namespace PlateNumberRecognition.Vision
                         var report = recognizer.Recognize(_sourceBitmap);
                         // визуализируем найденные итоги
                         var visualizedImage = new Bitmap(_sourceBitmap);
-                        //   RecognitionVisualizerUtils.Visualize(visualizedImage, report);
-                        RecognitionVisualizerUtils.VisualizeV2(visualizedImage, report, symbol[7]);
+                        RecognitionVisualizerUtils.Visualize(visualizedImage, report);
+                        //RecognitionVisualizerUtils.VisualizeV2(visualizedImage, report, symbol[7]);
                     }
                 }
                 catch
