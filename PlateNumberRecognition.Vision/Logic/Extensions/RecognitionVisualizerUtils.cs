@@ -45,13 +45,15 @@ namespace PlateNumberRecognition.Vision.Logic.Extensions
                         Bitmap cloneBitmap = bitmap.Clone(cloneRect, PixelFormat.Format24bppRgb);
                         g.DrawRectangle(DefaultMapping[symbol.State], symbol.StartPoint.X - thickness, symbol.StartPoint.Y - thickness, symbol.Width + thickness, symbol.Height + thickness);
                         bitmap.Save($"D:\\111.bmp");
-
-                        listOfSymbolData.Add(new SymbolDataModel()
+                        if (symbol.State == QState.Assumptions || symbol.State == QState.Ok)
                         {
-                            Image = CutSection(cloneBitmap, new Rectangle((int)(symbol.StartPoint.X), (int)(symbol.StartPoint.Y), (int)(symbol.Width), (int)(symbol.Height))),
-                            Position = new Tuple<int, int>(symbol.StartPoint.X, symbol.StartPoint.Y),
-                            Size = new Tuple<int, int>(symbol.Height, symbol.Width)
-                        });
+                            listOfSymbolData.Add(new SymbolDataModel()
+                            {
+                                Image = CutSection(cloneBitmap, new Rectangle((int)(symbol.StartPoint.X), (int)(symbol.StartPoint.Y), (int)(symbol.Width), (int)(symbol.Height))),
+                                Position = new Tuple<int, int>(symbol.StartPoint.X, symbol.StartPoint.Y),
+                                Size = new Tuple<int, int>(symbol.Height, symbol.Width)
+                            });
+                        }
                     }
                 }
                 catch (Exception ex)
