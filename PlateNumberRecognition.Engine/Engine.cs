@@ -34,7 +34,7 @@ namespace PlateNumberRecognition.Engine
             _conn.Open();
             Console.WriteLine("...Прогрев нейронной сети");
             new OCR.OCR(_conn);
-            //NeuralNetwork.RunV2(_eulerContainersCache);
+            NeuralNetwork.RunV2(_eulerContainersCache);
             //DataSet.SetNewData();
             //NeuralNetwork.RunV3(_eulerContainersCache);
             //DataSet.SetNewDataV2();
